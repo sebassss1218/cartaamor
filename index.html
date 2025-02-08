@@ -3,123 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Te tengo una propuesta 💛</title>
+    <title>Para Mi Amor</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #ffe6e6;
-            color: #d6336c;
             margin: 0;
+            padding: 0;
+            background-color: #ffeb3b;
             overflow: hidden;
-        }
-
-        /* Estilos de la animación inicial */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: white;
             display: flex;
-            align-items: center;
             justify-content: center;
-            flex-direction: column;
-            z-index: 2;
-            transition: opacity 1s ease-in-out;
+            align-items: center;
+            text-align: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            position: relative;
         }
-
-        .overlay img {
+        .container {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+        .flower {
+            position: absolute;
             width: 100px;
             height: 100px;
-            margin: 10px;
-            animation: flotar 2s infinite alternate ease-in-out;
+            background-image: url('https://img.freepik.com/vector-gratis/ilustracion-vector-flor-acuarela-estilo-colorido_341269-945.jpg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            animation: float 5s infinite linear;
         }
-
-        @keyframes flotar {
+        @keyframes float {
             0% { transform: translateY(0); }
-            100% { transform: translateY(-15px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
         }
-
-        /* Botón para mostrar la propuesta */
-        .btn-propuesta {
-            display: none;
+        .button {
             margin-top: 20px;
-            padding: 15px 25px;
-            font-size: 1.5em;
-            color: white;
-            background-color: #ffcc00;
+            padding: 10px 20px;
+            background: white;
+            color: black;
             border: none;
-            border-radius: 10px;
+            border-radius: 5px;
+            font-size: 16px;
             cursor: pointer;
         }
-
-        .btn-propuesta:hover {
-            background-color: #e6b800;
-        }
-
-        /* Contenido principal (oculto al inicio) */
-        .contenido {
+        .hidden {
             display: none;
-            margin-top: 50px;
         }
-
-        .btn-cancion {
-            margin-top: 20px;
-            padding: 15px 25px;
-            font-size: 1.2em;
-            color: white;
-            background-color: #ff4081;
-            border: none;
-            border-radius: 10px;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .btn-cancion:hover {
-            background-color: #e6005c;
+        .big-text {
+            font-size: 24px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-
-    <!-- Animación inicial con flores -->
-    <div class="overlay" id="overlay">
-        <h1 style="color: #ffcc00;">💛 ¡Hola mi amor! 💛</h1>
-        <p>Te traje flores amarillas porque eres lo mejor que me ha pasado 🌼💛</p>
-        <img src="https://i.imgur.com/4M3I9yK.png" alt="Flor Amarilla">
-        <img src="https://i.imgur.com/4M3I9yK.png" alt="Flor Amarilla">
-        <img src="https://i.imgur.com/4M3I9yK.png" alt="Flor Amarilla">
-        <button class="btn-propuesta" id="btnPropuesta">💛 Te tengo una propuesta 💛</button>
+    <div id="mainContainer" class="container">
+        <h1>Hola mi amor</h1>
+        <p>Esta página es para ti con todo el amor de tu ing favorito. 💛</p>
+        <button class="button" onclick="showValentinePage()">Solo me quieres un poquito? Dale aquí</button>
     </div>
-
-    <!-- Contenido principal (se muestra después) -->
-    <div class="contenido" id="contenido">
-        <h1>💖 ¡Hola mi amor! 💖</h1>
-        <p>🌹💕💫</p>
-        <h2>¿Quieres ser mi San Valentín? 💘</h2>
-        <p>Te dedico esta canción, porque desde que te encontré, mi vida cambió 💖</p>
-        <a class="btn-cancion" href="https://open.spotify.com/track/ID_DE_LA_CANCIÓN" target="_blank">
-            🎶 Escuchar *Te Encontré* 🎶
-        </a>
+    
+    <div id="valentineContainer" class="container hidden">
+        <h1>Gracias por llegar a mi vida</h1>
+        <p>Solo quiero agradecerte por estar a mi lado, por hacer mis días mejores y por ser tan increíble. Tenerte en mi vida es un regalo, eres lo mejor que me ha pasado y te amo con todo mi corazón. 💖</p>
+        <p class="big-text">¿Quieres ser mi Valentín? 💕</p>
+        <button class="button" id="yesButton" onclick="showDateMessage()">Sí</button>
+        <button class="button" id="noButton" onclick="hideNoButton()">No</button>
+        <p id="dateMessage" class="hidden big-text">Nos vemos el 15 de febrero ❤️</p>
+        <button class="button hidden" id="spotifyButton" onclick="openSpotify()">Escucha nuestra canción</button>
     </div>
 
     <script>
-        // Mostrar el botón después de unos segundos
-        setTimeout(() => {
-            document.getElementById("btnPropuesta").style.display = "block";
-        }, 3000);
+        function createFlowers() {
+            const positions = [
+                { top: '10%', left: '10%' }, { top: '10%', left: '80%' },
+                { top: '80%', left: '10%' }, { top: '80%', left: '80%' },
+                { top: '50%', left: '5%' }, { top: '50%', left: '90%' },
+                { top: '20%', left: '50%' }, { top: '80%', left: '50%' },
+                { top: '30%', left: '20%' }, { top: '70%', left: '75%' }
+            ];
+            positions.forEach(pos => {
+                let flower = document.createElement('div');
+                flower.className = 'flower';
+                flower.style.left = pos.left;
+                flower.style.top = pos.top;
+                document.body.appendChild(flower);
+            });
+        }
 
-        // Cuando se presiona el botón, desaparece la animación y muestra la propuesta
-        document.getElementById("btnPropuesta").addEventListener("click", function() {
-            document.getElementById("overlay").style.opacity = "0";
-            setTimeout(() => {
-                document.getElementById("overlay").style.display = "none";
-                document.getElementById("contenido").style.display = "block";
-            }, 1000);
-        });
+        function showValentinePage() {
+            document.getElementById("mainContainer").classList.add("hidden");
+            document.getElementById("valentineContainer").classList.remove("hidden");
+        }
+
+        function hideNoButton() {
+            document.getElementById("noButton").classList.add("hidden");
+        }
+
+        function showDateMessage() {
+            document.getElementById("dateMessage").classList.remove("hidden");
+            document.getElementById("spotifyButton").classList.remove("hidden");
+        }
+
+        function openSpotify() {
+            window.open("https://open.spotify.com/intl-es/track/2kP6fOqdSQ5CYqVH5z5844?si=488351f401654618", "_blank");
+        }
+
+        createFlowers();
     </script>
-
 </body>
 </html>
