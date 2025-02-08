@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Te tengo una propuesta 💛</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffe6e6;
+            color: #d6336c;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* Estilos de la animación inicial */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 2;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .overlay img {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            animation: flotar 2s infinite alternate ease-in-out;
+        }
+
+        @keyframes flotar {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-15px); }
+        }
+
+        /* Botón para mostrar la propuesta */
+        .btn-propuesta {
+            display: none;
+            margin-top: 20px;
+            padding: 15px 25px;
+            font-size: 1.5em;
+            color: white;
+            background-color: #ffcc00;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .btn-propuesta:hover {
+            background-color: #e6b800;
+        }
+
+        /* Contenido principal (oculto al inicio) */
+        .contenido {
+            display: none;
+            margin-top: 50px;
+        }
+
+        .btn-cancion {
+            margin-top: 20px;
+            padding: 15px 25px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #ff4081;
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn-cancion:hover {
+            background-color: #e6005c;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Animación inicial con flores -->
+    <div class="overlay" id="overlay">
+        <h1 style="color: #ffcc00;">💛 ¡Hola mi amor! 💛</h1>
+        <p>Te traje flores amarillas porque eres lo mejor que me ha pasado 🌼💛</p>
+        <img src="https://i.imgur.com/4M3I9yK.png" alt="Flor Amarilla">
+        <img src="https://i.imgur.com/4M3I9yK.png" alt="Flor Amarilla">
+        <img src="https://i.imgur.com/4M3I9yK.png" alt="Flor Amarilla">
+        <button class="btn-propuesta" id="btnPropuesta">💛 Te tengo una propuesta 💛</button>
+    </div>
+
+    <!-- Contenido principal (se muestra después) -->
+    <div class="contenido" id="contenido">
+        <h1>💖 ¡Hola mi amor! 💖</h1>
+        <p>🌹💕💫</p>
+        <h2>¿Quieres ser mi San Valentín? 💘</h2>
+        <p>Te dedico esta canción, porque desde que te encontré, mi vida cambió 💖</p>
+        <a class="btn-cancion" href="https://open.spotify.com/track/ID_DE_LA_CANCIÓN" target="_blank">
+            🎶 Escuchar *Te Encontré* 🎶
+        </a>
+    </div>
+
+    <script>
+        // Mostrar el botón después de unos segundos
+        setTimeout(() => {
+            document.getElementById("btnPropuesta").style.display = "block";
+        }, 3000);
+
+        // Cuando se presiona el botón, desaparece la animación y muestra la propuesta
+        document.getElementById("btnPropuesta").addEventListener("click", function() {
+            document.getElementById("overlay").style.opacity = "0";
+            setTimeout(() => {
+                document.getElementById("overlay").style.display = "none";
+                document.getElementById("contenido").style.display = "block";
+            }, 1000);
+        });
+    </script>
+
+</body>
+</html>
